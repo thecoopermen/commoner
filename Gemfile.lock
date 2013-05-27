@@ -1,0 +1,23 @@
+PATH
+  remote: .
+  specs:
+    commoner (0.0.1)
+      httparty (>= 0.10)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    httparty (0.11.0)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
+    multi_json (1.7.4)
+    multi_xml (0.5.3)
+    rake (10.0.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.3)
+  commoner!
+  rake
