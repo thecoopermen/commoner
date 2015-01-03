@@ -1,6 +1,8 @@
 require "commoner/version"
 require "httparty"
 require "json"
+require "Nokogiri"
+require "Sanitize"
 
 class Commoner
 
@@ -31,10 +33,22 @@ class Commoner
       response   = json_get(info_uri(title))
       pages      = response['query']['pages'].map { |page_id, page| page }
       categories = pages.first['categories'].map { |category| category['title'] }.flatten
+      descriptionurl = pages.first['imageinfo'].first['descriptionurl']
 
+      # description and author details are not available through the API calls
+      party = HTTParty.get(descriptionurl)
+      doc = Nokogiri::HTML(party.to_s)
+
+      author_url = ""
+      au = doc.xpath('//tr[td/@id="fileinfotpl_aut"]/td/a/@href')
+      author_url = au[0].content if au.size > 0
+      author_url = "http://commons.wikimedia.org" + author_url if author_url.start_with?('/wiki/User:')
       {
-        categories: categories.map { |category| category.gsub(/^Category:/, '') },
-        url:        pages.first['imageinfo'].first['url']
+        categories:  categories.map { |category| category.gsub(/^Category:/, '') },
+        url:         pages.first['imageinfo'].first['url'],
+        description: Sanitize.clean(doc.xpath('//td[@class="description"]')[0].content)[0,255].strip!,
+        author:      Sanitize.clean(doc.xpath('//tr[td/@id="fileinfotpl_aut"]/td')[1].content),
+        author_url:  author_url
       }
     end
   end
