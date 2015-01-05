@@ -31,14 +31,6 @@ describe Commoner do
 
     it 'list images for a page' do
     	images = Commoner.images("Meles meles")
-  #  	images.each_with_index do |image, index|
-  #  	  puts index.to_s + ". " 
-  #      puts "  url: " + image[:url]
-  #      puts "  description: " + image[:description]
-  #      puts "  author: " + image[:author] 
-  #      puts "  author_url: " + image[:author_url]
-  #      puts " "
-  #  	end
       first = images[0]
       expect(first[:url].start_with?("http:")).to be(true)
     end
@@ -59,14 +51,36 @@ describe Commoner do
 
     context 'an unknown page name' do
       it 'gives details of a title' do
-        images = Commoner.details("File:xyz.jpg")
+        image = Commoner.details("File:xyz.jpg")
       end
     end
 
-    context 'a Wikimedia File page' do
+    context 'a Commons file page' do
       it 'gives details of a title' do
-        images = Commoner.details("File:Badger 25-07-09.jpg")
+        image = Commoner.details("File:Badger 25-07-09.jpg")
       end
+    end
+
+    context 'a full Commons file page url' do
+      it 'gives details of a title' do
+        image = Commoner.details("http://commons.wikimedia.org/wiki/File:Badger 25-07-09.jpg")
+      end
+    end
+
+    context 'a Wikipedia image preview url' do
+      it 'gives details of a title' do
+        image = Commoner.details("http://en.wikipedia.org/wiki/Main_Page#mediaviewer/File:Suillus_pungens_123004.jpg")
+ #    images.each_with_index do |image, index|
+#      puts index.to_s + ". " 
+        puts "  url: " + image[:url]
+        puts "  description: " + image[:description]
+        puts "  author: " + image[:author] 
+       puts "  author_url: " + image[:author_url]
+        puts "  licence: " + image[:licence]
+        puts "  licence_url: " + image[:licence_url]
+        puts " "
+#     end
+           end
     end
   end
 
@@ -74,8 +88,7 @@ describe Commoner do
 
     context 'a base category' do
       it 'lists images categorised as this and within subcategories' do
-        images = Commoner.categorised_images("Category:Stolpersteine")
-        puts images.to_s
+        images = Commoner.categorised_images("Category:Stolperstein-Plagiate")
       end
     end
 

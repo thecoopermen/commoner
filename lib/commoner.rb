@@ -27,19 +27,16 @@ class Commoner
   end
 
   def search(query)
-    puts search_uri(query)
     json_get(search_uri(query))[1]
   end
 
   def images(term)
     # get a list of titles for the given term
-    puts query_uri(term)
     response = json_get(query_uri(term))
     images   = response['query']['pages'].map { |page_id, page| page['images'] }
 
     if images!=[nil]
       titles   = images.flatten.map { |image| image['title'] }
-      # map each title to category and url info
       titles.map do |title|
         details(title)
       end
@@ -53,9 +50,7 @@ class Commoner
 
     if images!=[nil]
       titles = images.flatten.map { |image| image['title'] }
-      # map each title to category and url info
       titles.map do |title|
-        puts title
         if title.start_with?('Category:')
           categorised_images(title)
         else
@@ -66,26 +61,41 @@ class Commoner
   end
 
   def details(title)
-    return nil if (!title.start_with?('File:'))
+    return nil if /File:.*/.match(title) == nil
+    title = /File:.*/.match(title)[0]
+    puts info_uri(title)
     response   = json_get(info_uri(title))
+    return {} if response == nil
     pages      = response['query']['pages'].map { |page_id, page| page }
     categories = pages.first['categories'].map { |category| category['title'] }.flatten
     descriptionurl = pages.first['imageinfo'].first['descriptionurl']
+    licence = pages.first['imageinfo'].first['extmetadata']['LicenseShortName']['value']
+    licence_url = pages.first['imageinfo'].first['extmetadata']['LicenseUrl']['value'] if pages.first['imageinfo'].first['extmetadata']['LicenseUrl']
 
     # description and author details are not available through the API calls
     party = HTTParty.get(descriptionurl)
     doc = Nokogiri::HTML(party.to_s)
 
+    author_name = ""
+    an = doc.xpath('//tr[td/@id="fileinfotpl_aut"]/td')
+    author_name = Sanitize.clean(an[1].content) if an.size > 0
+
     author_url = ""
     au = doc.xpath('//tr[td/@id="fileinfotpl_aut"]/td/a/@href')
     author_url = au[0].content if au.size > 0
     author_url = "http://commons.wikimedia.org" + author_url if author_url.start_with?('/wiki/User:')
+
+    description = ""
+    description_element = doc.xpath('//td[@class="description"]')
+    description = Sanitize.clean(description_element[0].content)[0,255].strip! if description_element.size > 0
     {
       categories:  categories.map { |category| category.gsub(/^Category:/, '') },
       url:         pages.first['imageinfo'].first['url'],
-      description: Sanitize.clean(doc.xpath('//td[@class="description"]')[0].content)[0,255].strip!,
-      author:      Sanitize.clean(doc.xpath('//tr[td/@id="fileinfotpl_aut"]/td')[1].content),
-      author_url:  author_url
+      description: description,
+      author:      author_name,
+      author_url:  author_url,
+      licence:     licence,
+      licence_url: licence_url
     }
   end
 
@@ -113,7 +123,7 @@ private
   end
 
   def info_uri(image)
-    uri_for action: 'query', titles: image, prop: 'imageinfo|categories', iiprop: 'url', format: 'json'
+    uri_for action: 'query', titles: image, prop: 'imageinfo|categories', iiprop: 'url|extmetadata', format: 'json'
   end
 
   def category_uri(term)
