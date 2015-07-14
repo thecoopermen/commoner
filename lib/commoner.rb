@@ -63,7 +63,6 @@ class Commoner
   def details(title)
     return nil if /File:.*/.match(title) == nil
     title = /File:.*/.match(title)[0]
-    puts info_uri(title)
     response   = json_get(info_uri(title))
     return {} if response == nil
     pages      = response['query']['pages'].map { |page_id, page| page }
@@ -73,7 +72,7 @@ class Commoner
     licence_url = pages.first['imageinfo'].first['extmetadata']['LicenseUrl']['value'] if pages.first['imageinfo'].first['extmetadata']['LicenseUrl']
 
     # description and author details are not available through the API calls
-    party = HTTParty.get(descriptionurl)
+    party = HTTParty.get(descriptionurl, :verify => false)
     doc = Nokogiri::HTML(party.to_s)
 
     author_name = ""
@@ -102,7 +101,7 @@ class Commoner
 private
 
   def json_get(uri)
-    response = HTTParty.get(uri)
+    response = HTTParty.get(uri, :verify => false)
     if response.code == 200
       JSON.parse(response.body)
     else
@@ -131,6 +130,6 @@ private
   end
 
   def default_uri
-    @default_uri ||= "http://commons.wikimedia.org/w/api.php"
+    @default_uri ||= "https://commons.wikimedia.org/w/api.php"
   end
 end

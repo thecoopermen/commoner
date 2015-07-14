@@ -32,7 +32,7 @@ describe Commoner do
     it 'list images for a page' do
     	images = Commoner.images("Meles meles")
       first = images[0]
-      expect(first[:url].start_with?("http:")).to be(true)
+      expect(first[:url].start_with?("https:")).to be(true)
     end
 
     it 'copes when there are no images found' do
@@ -63,13 +63,21 @@ describe Commoner do
 
     context 'a full Commons file page url' do
       it 'gives details of a title' do
-        image = Commoner.details("http://commons.wikimedia.org/wiki/File:Badger 25-07-09.jpg")
+        image = Commoner.details("https://commons.wikimedia.org/wiki/File:Badger 25-07-09.jpg")
+
+        puts "  url: " + image[:url]
+        puts "  description: " + image[:description]
+        puts "  author: " + image[:author] 
+       puts "  author_url: " + image[:author_url]
+        puts "  licence: " + image[:licence]
+        puts "  licence_url: " + image[:licence_url]
+        puts " "
       end
     end
 
     context 'a Wikipedia image preview url' do
       it 'gives details of a title' do
-        image = Commoner.details("http://en.wikipedia.org/wiki/Main_Page#mediaviewer/File:Suillus_pungens_123004.jpg")
+        image = Commoner.details("https://en.wikipedia.org/wiki/Main_Page#mediaviewer/File:Suillus_pungens_123004.jpg")
  #    images.each_with_index do |image, index|
 #      puts index.to_s + ". " 
         puts "  url: " + image[:url]
