@@ -3,40 +3,35 @@ require 'spec_helper'
 describe Commoner do
 
   describe '#search' do
-    context 'on a term that is not listed' do
-      it 'returns an empty array' do
+    context 'on an unknown term' do
+      it 'finds nothing' do
         titles = Commoner.search("badger")
         expect(titles).to eq([])
       end
     end
 
     context 'on a known term' do
-      it 'returns some titles' do
+      it 'finds some titles' do
         titles = Commoner.search("Meles meles")
         expect(titles.size).to be > 0
-      end
-    end
-
-    context 'humph' do
-      it 'searches for stuff' do
-        titles = Commoner.search("plaques")
-        titles.each_with_index do |t, index|
-#          puts index.to_s + ". " + t
-        end
       end
     end
   end
 
   describe '#images' do
 
-    it 'list images for a page' do
-    	images = Commoner.images("Meles meles")
-      first = images[0]
-      expect(first[:url].start_with?("https:")).to be(true)
+    context 'on a known term' do
+      it 'finds at least one image' do
+      	images = Commoner.images("Meles meles")
+        first = images[0]
+        expect(first[:url].start_with?("https:")).to be(true)
+      end
     end
 
-    it 'copes when there are no images found' do
-      images = Commoner.images("plaques")
+    context 'on an unknown term' do
+      it 'copes when there are no images found' do
+        images = Commoner.images("plaques")
+      end
     end
 
   end
@@ -64,14 +59,6 @@ describe Commoner do
     context 'a full Commons file page url' do
       it 'gives details of a title' do
         image = Commoner.details("https://commons.wikimedia.org/wiki/File:Badger 25-07-09.jpg")
-
-        puts "  url: " + image[:url]
-        puts "  description: " + image[:description]
-        puts "  author: " + image[:author] 
-       puts "  author_url: " + image[:author_url]
-        puts "  licence: " + image[:licence]
-        puts "  licence_url: " + image[:licence_url]
-        puts " "
       end
     end
 
@@ -90,6 +77,31 @@ describe Commoner do
 #     end
            end
     end
+  end
+
+  describe '#licence' do
+
+    context 'of a Delhi portrait of a man' do
+      it 'is Creative Commons Attribution-Share Alike 3.0 Unported' do
+        image = Commoner.details("https://commons.wikimedia.org/wiki/File:India_-_Delhi_portrait_of_a_man_-_4780.jpg")
+        expect(image[:licence]).to eq("CC BY-SA 3.0")
+      end
+    end
+
+    context 'of Nahal Zaror, south 11' do
+      it 'is Creative Commons Attribution-Share Alike 3.0 Unported' do
+        image = Commoner.details("File:Nahal_Zaror,_south_11.jpg")
+        expect(image[:licence]).to eq("CC BY-SA 3.0")
+      end
+    end
+
+    context 'of The mohave desert near the fossil beds' do
+      it 'is Creative Commons Attribution-Share Alike 3.0 Unported' do
+        image = Commoner.details("File:PSM_V86_D252_The_mohave_desert_near_the_fossil_beds.jpg")
+        expect(image[:licence]).to eq("CC BY-SA 3.0")
+      end
+    end
+
   end
 
   describe '#details' do
