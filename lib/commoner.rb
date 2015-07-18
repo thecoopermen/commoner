@@ -70,20 +70,16 @@ class Commoner
     descriptionurl = pages.first['imageinfo'].first['descriptionurl']
     licence = pages.first['imageinfo'].first['extmetadata']['LicenseShortName']['value']
     licence_url = pages.first['imageinfo'].first['extmetadata']['LicenseUrl']['value'] if pages.first['imageinfo'].first['extmetadata']['LicenseUrl']
-
-    # description and author details are not available through the API calls
+    licence_url = 'https://en.wikipedia.org/wiki/Public_domain' if licence_url == nil && licence == 'Public domain'
     party = HTTParty.get(descriptionurl, :verify => false)
     doc = Nokogiri::HTML(party.to_s)
-
     author_name = ""
     an = doc.xpath('//tr[td/@id="fileinfotpl_aut"]/td')
     author_name = Sanitize.clean(an[1].content) if an.size > 0
-
     author_url = ""
     au = doc.xpath('//tr[td/@id="fileinfotpl_aut"]/td/a/@href')
     author_url = au[0].content if au.size > 0
     author_url = "http://commons.wikimedia.org" + author_url if author_url.start_with?('/wiki/User:')
-
     description = ""
     description_element = doc.xpath('//td[@class="description"]')
     description = Sanitize.clean(description_element[0].content)[0,255].strip! if description_element.size > 0
@@ -126,7 +122,7 @@ private
   end
 
   def category_uri(term)
-    uri_for action: 'query', cmtitle: term, list: 'categorymembers', format: 'json'
+    uri_for action: 'query', list: 'categorymembers', format: 'json', cmtitle: term
   end
 
   def default_uri
