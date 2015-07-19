@@ -74,16 +74,6 @@ describe Commoner do
       it 'gives details of a title' do
         VCR.use_cassette ('details/' + self.class.description).gsub(" ","-") do
           image = Commoner.details("https://en.wikipedia.org/wiki/Main_Page#mediaviewer/File:Suillus_pungens_123004.jpg")
- #    images.each_with_index do |image, index|
-#      puts index.to_s + ". " 
-        puts "  url: " + image[:url]
-        puts "  description: " + image[:description]
-        puts "  author: " + image[:author] 
-       puts "  author_url: " + image[:author_url]
-        puts "  licence: " + image[:licence]
-        puts "  licence_url: " + image[:licence_url]
-        puts " "
-#     end
         end
       end
     end
@@ -132,7 +122,7 @@ describe Commoner do
       it 'is public domain' do
         VCR.use_cassette ('licence/' + self.class.description).gsub(" ","-") do
           image = Commoner.details 'File:Hoffman_August_Wilhelm_von.jpg'
-          expect(image[:licence]).to eq('Public domain')
+          expect(image[:licence]).to eq('CC-PD-Mark')
         end
       end
     end
@@ -140,7 +130,7 @@ describe Commoner do
       it 'is public domain' do
         VCR.use_cassette ('licence/' + self.class.description).gsub(" ","-") do
           image = Commoner.details 'File:Hoffman_August_Wilhelm_von.jpg'
-          expect(image[:licence_url]).to eq('https://en.wikipedia.org/wiki/Public_domain')
+          expect(image[:licence_url]).to eq('http://creativecommons.org/publicdomain/mark/1.0')
         end
       end
     end

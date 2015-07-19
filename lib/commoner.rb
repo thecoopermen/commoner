@@ -67,10 +67,15 @@ class Commoner
     return {} if response == nil
     pages      = response['query']['pages'].map { |page_id, page| page }
     categories = pages.first['categories'].map { |category| category['title'] }.flatten
+    categories = categories.map { |category| category.gsub(/^Category:/, '') }
     descriptionurl = pages.first['imageinfo'].first['descriptionurl']
     licence = pages.first['imageinfo'].first['extmetadata']['LicenseShortName']['value']
     licence_url = pages.first['imageinfo'].first['extmetadata']['LicenseUrl']['value'] if pages.first['imageinfo'].first['extmetadata']['LicenseUrl']
-    licence_url = 'https://en.wikipedia.org/wiki/Public_domain' if licence_url == nil && licence == 'Public domain'
+    if categories.include? 'CC-PD-Mark'
+      licence = 'CC-PD-Mark'
+      licence_url = 'http://creativecommons.org/publicdomain/mark/1.0'
+    end
+    licence_url = 'https://en.wikipedia.org/wiki/Public_domain' if licence == 'Public domain' && licence_url == nil
     party = HTTParty.get(descriptionurl, :verify => false)
     doc = Nokogiri::HTML(party.to_s)
     author_name = ""
@@ -84,7 +89,7 @@ class Commoner
     description_element = doc.xpath('//td[@class="description"]')
     description = Sanitize.clean(description_element[0].content)[0,255].strip! if description_element.size > 0
     {
-      categories:  categories.map { |category| category.gsub(/^Category:/, '') },
+      categories:  categories,
       url:         pages.first['imageinfo'].first['url'],
       description: description,
       author:      author_name,
