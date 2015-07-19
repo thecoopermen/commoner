@@ -7,4 +7,9 @@ RSpec::Core::RakeTask.new(:spec) do |task|
   task.rspec_opts = ['--color', '--format', 'nested']
 end
 
+desc "Open an irb session preloaded with this library. 'Rake console'"
+task :console do
+  sh "irb -rubygems -I lib -r commoner.rb"
+end
+
 task :default => :spec
