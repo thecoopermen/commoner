@@ -19,6 +19,7 @@ class Commoner
   end
 
   def self.details(title)
+    title = URI.unescape title
     new.details(title)
   end
 
@@ -66,6 +67,7 @@ class Commoner
     response   = json_get(info_uri(title))
     return {} if response == nil
     pages      = response['query']['pages'].map { |page_id, page| page }
+    puts response.to_s if pages.first['categories']==nil
     categories = pages.first['categories'].map { |category| category['title'] }.flatten
     categories = categories.map { |category| category.gsub(/^Category:/, '') }
     descriptionurl = pages.first['imageinfo'].first['descriptionurl']
