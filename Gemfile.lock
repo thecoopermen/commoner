@@ -1,9 +1,8 @@
 PATH
   remote: .
   specs:
-    commoner (0.0.3)
+    commoner (1.0.0)
       httparty (>= 0.10)
-      nokogiri
       sanitize
 
 GEM
