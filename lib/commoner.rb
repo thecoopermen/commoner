@@ -1,6 +1,6 @@
 require "commoner/version"
 require "httparty"
-require "Sanitize"
+require "sanitize"
 
 class Commoner
 
