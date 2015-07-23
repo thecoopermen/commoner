@@ -1,7 +1,5 @@
 require "commoner/version"
 require "httparty"
-require "json"
-require "Nokogiri"
 require "Sanitize"
 
 class Commoner
