@@ -66,8 +66,8 @@ class Commoner
     title = /File:.*/.match(title)[0]
     response   = json_get(info_uri(title))
     return {} if response == nil
-    pages      = response['query']['pages'].map { |page_id, page| page }
-    puts response.to_s if pages.first['categories']==nil
+    pages = response['query']['pages'].map { |page_id, page| page }
+    return { description: 'missing' } if pages.first['missing']!=nil
     categories = pages.first['categories'].map { |category| category['title'] }.flatten
     categories = categories.map { |category| category.gsub(/^Category:/, '') }
     descriptionurl = pages.first['imageinfo'].first['descriptionurl']
