@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - nginx/1.9.3
       Date:
-      - Sat, 18 Jul 2015 17:15:46 GMT
+      - Sun, 26 Jul 2015 07:10:38 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
@@ -39,7 +39,7 @@ http_interactions:
       Vary:
       - Accept-Encoding,X-Forwarded-Proto,Cookie
       X-Varnish:
-      - 1677791050, 3855893675, 4158038361
+      - 2632387894, 4872881, 57086645
       Via:
       - 1.1 varnish, 1.1 varnish, 1.1 varnish
       Accept-Ranges:
@@ -47,12 +47,12 @@ http_interactions:
       Age:
       - '0'
       X-Cache:
-      - cp1068 miss (0), cp3030 miss (0), cp3005 frontend miss (0)
+      - cp1068 miss (0), cp3030 miss (0), cp3041 frontend miss (0)
       Strict-Transport-Security:
       - max-age=31536000
       Set-Cookie:
       - GeoIP=GB:H9:London:51.5142:-0.0931:v4; Path=/; Domain=.wikimedia.org
-      - WMF-Last-Access=18-Jul-2015;Path=/;HttpOnly;Expires=Wed, 19 Aug 2015 12:00:00
+      - WMF-Last-Access=26-Jul-2015;Path=/;HttpOnly;Expires=Thu, 27 Aug 2015 00:00:00
         GMT
       X-Analytics:
       - https=1
@@ -106,7 +106,7 @@ http_interactions:
         Wilhelm von Hofmann"},{"ns":14,"title":"Category:CC-PD-Mark"},{"ns":14,"title":"Category:PD
         Old"},{"ns":14,"title":"Category:Template Unknown (author)"}]}}}}'
     http_version: 
-  recorded_at: Sat, 18 Jul 2015 17:15:46 GMT
+  recorded_at: Sun, 26 Jul 2015 07:10:38 GMT
 - request:
     method: get
     uri: https://commons.wikimedia.org/wiki/File:Hoffman_August_Wilhelm_von.jpg
@@ -128,11 +128,11 @@ http_interactions:
       Server:
       - nginx/1.9.3
       Date:
-      - Sat, 18 Jul 2015 17:15:46 GMT
+      - Sun, 26 Jul 2015 07:10:38 GMT
       Content-Type:
       - text/html; charset=UTF-8
       Content-Length:
-      - '8723'
+      - '8730'
       Connection:
       - keep-alive
       X-Content-Type-Options:
@@ -148,22 +148,22 @@ http_interactions:
       Last-Modified:
       - Fri, 10 Jul 2015 21:26:18 GMT
       X-Varnish:
-      - 845029017, 1449290958, 4158038619 4157494800
+      - 1521621736, 1923590161 1806125825, 57087107
       Via:
       - 1.1 varnish, 1.1 varnish, 1.1 varnish
       Accept-Ranges:
       - bytes
       Age:
-      - '578'
+      - '164853'
       X-Cache:
-      - cp1053 miss (0), cp3010 miss (0), cp3005 frontend hit (2)
+      - cp1053 miss (0), cp3010 hit (1), cp3041 frontend miss (0)
       Strict-Transport-Security:
       - max-age=31536000
       Cache-Control:
       - private, s-maxage=0, max-age=0, must-revalidate
       Set-Cookie:
       - GeoIP=GB:H9:London:51.5142:-0.0931:v4; Path=/; Domain=.wikimedia.org
-      - WMF-Last-Access=18-Jul-2015;Path=/;HttpOnly;Expires=Wed, 19 Aug 2015 12:00:00
+      - WMF-Last-Access=26-Jul-2015;Path=/;HttpOnly;Expires=Thu, 27 Aug 2015 00:00:00
         GMT
       X-Analytics:
       - page_id=3263737;ns=6;https=1
@@ -174,7 +174,7 @@ http_interactions:
         c3M9ImNsaWVudC1ub2pzIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04
         IiAvPgo8dGl0bGU+RmlsZTpIb2ZmbWFuIEF1Z3VzdCBXaWxoZWxtIHZvbi5q
         cGcgLSBXaWtpbWVkaWEgQ29tbW9uczwvdGl0bGU+CjxtZXRhIG5hbWU9Imdl
-        bmVyYXRvciIgY29udGVudD0iTWVkaWFXaWtpIDEuMjZ3bWYxNCIgLz4KPGxp
+        bmVyYXRvciIgY29udGVudD0iTWVkaWFXaWtpIDEuMjZ3bWYxNSIgLz4KPGxp
         bmsgcmVsPSJhbHRlcm5hdGUiIHR5cGU9ImFwcGxpY2F0aW9uL3gtd2lraSIg
         dGl0bGU9IkVkaXQiIGhyZWY9Ii93L2luZGV4LnBocD90aXRsZT1GaWxlOkhv
         ZmZtYW5fQXVndXN0X1dpbGhlbG1fdm9uLmpwZyZhbXA7YWN0aW9uPWVkaXQi
@@ -275,7 +275,7 @@ http_interactions:
         b2xsZXIiLCJza2lucy52ZWN0b3IuanMiXSk7Cn08L3NjcmlwdD4KPGxpbmsg
         cmVsPSJkbnMtcHJlZmV0Y2giIGhyZWY9Ii8vbWV0YS53aWtpbWVkaWEub3Jn
         IiAvPgo8IS0tW2lmIGx0IElFIDddPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+
-        Ym9keXtiZWhhdmlvcjp1cmwoIi93L3N0YXRpYy8xLjI2d21mMTQvc2tpbnMv
+        Ym9keXtiZWhhdmlvcjp1cmwoIi93L3N0YXRpYy8xLjI2d21mMTUvc2tpbnMv
         VmVjdG9yL2Nzc2hvdmVyLm1pbi5odGMiKX08L3N0eWxlPjwhW2VuZGlmXS0t
         Pgo8L2hlYWQ+Cjxib2R5IGNsYXNzPSJtZWRpYXdpa2kgbHRyIHNpdGVkaXIt
         bHRyIG5zLTYgbnMtc3ViamVjdCBwYWdlLUZpbGVfSG9mZm1hbl9BdWd1c3Rf
@@ -781,12 +781,12 @@ http_interactions:
         Ii8+PC9hPgkJCQkJCTwvbGk+CgkJCQkJCQkJCQkJPGxpIGlkPSJmb290ZXIt
         cG93ZXJlZGJ5aWNvIj4KCQkJCQkJCTxhIGhyZWY9Ii8vd3d3Lm1lZGlhd2lr
         aS5vcmcvIj48aW1nIHNyYz0iLy9jb21tb25zLndpa2ltZWRpYS5vcmcvc3Rh
-        dGljLzEuMjZ3bWYxNC9yZXNvdXJjZXMvYXNzZXRzL3Bvd2VyZWRieV9tZWRp
+        dGljLzEuMjZ3bWYxNS9yZXNvdXJjZXMvYXNzZXRzL3Bvd2VyZWRieV9tZWRp
         YXdpa2lfODh4MzEucG5nIiBhbHQ9IlBvd2VyZWQgYnkgTWVkaWFXaWtpIiBz
         cmNzZXQ9Ii8vY29tbW9ucy53aWtpbWVkaWEub3JnL3N0YXRpYy8xLjI2d21m
-        MTQvcmVzb3VyY2VzL2Fzc2V0cy9wb3dlcmVkYnlfbWVkaWF3aWtpXzEzMng0
+        MTUvcmVzb3VyY2VzL2Fzc2V0cy9wb3dlcmVkYnlfbWVkaWF3aWtpXzEzMng0
         Ny5wbmcgMS41eCwgLy9jb21tb25zLndpa2ltZWRpYS5vcmcvc3RhdGljLzEu
-        MjZ3bWYxNC9yZXNvdXJjZXMvYXNzZXRzL3Bvd2VyZWRieV9tZWRpYXdpa2lf
+        MjZ3bWYxNS9yZXNvdXJjZXMvYXNzZXRzL3Bvd2VyZWRieV9tZWRpYXdpa2lf
         MTc2eDYyLnBuZyAyeCIgd2lkdGg9Ijg4IiBoZWlnaHQ9IjMxIiAvPjwvYT4J
         CQkJCQk8L2xpPgoJCQkJCQkJCQk8L3VsPgoJCQkJCQk8ZGl2IHN0eWxlPSJj
         bGVhcjpib3RoIj48L2Rpdj4KCQk8L2Rpdj4KCQk8c2NyaXB0PmlmKHdpbmRv
@@ -809,25 +809,26 @@ http_interactions:
         ImV4dC5jaXJydXNTZWFyY2gubG9nZ2luZ1NjaGVtYSIsIm1tdi5ib290c3Ry
         YXAuYXV0b3N0YXJ0IiwiZXh0LmltYWdlTWV0cmljcy5sb2FkZXIiLCJleHQu
         ZXZlbnRMb2dnaW5nLnN1YnNjcmliZXIiLCJleHQud2lraW1lZGlhRXZlbnRz
-        IiwiZXh0Lndpa2ltZWRpYUV2ZW50cy5zdGF0c2QiLCJleHQubmF2aWdhdGlv
-        blRpbWluZyIsImV4dC5nYWRnZXQuU2xpZGVzaG93IiwiZXh0LmdhZGdldC5a
-        b29tVmlld2VyIiwiZXh0LmdhZGdldC5Db2xsYXBzaWJsZVRlbXBsYXRlcyIs
-        ImV4dC5nYWRnZXQuZmFzdGNjaSIsImV4dC5nYWRnZXQuVXBsb2FkV2l6YXJk
-        IiwiZXh0LmdhZGdldC5Mb25nLUltYWdlLU5hbWVzLWluLUNhdGVnb3JpZXMi
-        LCJleHQuZ2FkZ2V0LlN0b2NrcGhvdG8iLCJleHQuZ2FkZ2V0LldhdGNobGlz
-        dE5vdGljZSIsImV4dC5nYWRnZXQuQWpheFF1aWNrRGVsZXRlIiwiZXh0Lmdh
-        ZGdldC5XaWtpTWluaUF0bGFzIiwiZXh0LmdhZGdldC5MYW5ndWFnZVNlbGVj
-        dCIsImV4dC52aXN1YWxFZGl0b3IudGFyZ2V0TG9hZGVyIiwic2NoZW1hLlVu
-        aXZlcnNhbExhbmd1YWdlU2VsZWN0b3IiLCJleHQudWxzLmV2ZW50bG9nZ2Vy
-        IiwiZXh0LnVscy5wdCJdLG51bGwsdHJ1ZSk7Cn08L3NjcmlwdD4KPHNjcmlw
-        dD5pZih3aW5kb3cubXcpewpkb2N1bWVudC53cml0ZSgiXHUwMDNDc2NyaXB0
-        IHNyYz1cIi8vY29tbW9ucy53aWtpbWVkaWEub3JnL3cvbG9hZC5waHA/ZGVi
-        dWc9ZmFsc2VcdTAwMjZhbXA7bGFuZz1lblx1MDAyNmFtcDttb2R1bGVzPXNp
-        dGVcdTAwMjZhbXA7b25seT1zY3JpcHRzXHUwMDI2YW1wO3NraW49dmVjdG9y
-        XHUwMDI2YW1wOypcIlx1MDAzRVx1MDAzQy9zY3JpcHRcdTAwM0UiKTsKfTwv
-        c2NyaXB0Pgo8c2NyaXB0PmlmKHdpbmRvdy5tdyl7Cm13LmNvbmZpZy5zZXQo
-        eyJ3Z0JhY2tlbmRSZXNwb25zZVRpbWUiOjE0MSwid2dIb3N0bmFtZSI6Im13
-        MTA2OSJ9KTsKfTwvc2NyaXB0PgoJPC9ib2R5Pgo8L2h0bWw+Cg==
+        IiwiZXh0Lndpa2ltZWRpYUV2ZW50cy5zdGF0c2QiLCJleHQud2lraW1lZGlh
+        RXZlbnRzLmdlb0ZlYXR1cmVzIiwiZXh0Lm5hdmlnYXRpb25UaW1pbmciLCJl
+        eHQuZ2FkZ2V0LlNsaWRlc2hvdyIsImV4dC5nYWRnZXQuWm9vbVZpZXdlciIs
+        ImV4dC5nYWRnZXQuQ29sbGFwc2libGVUZW1wbGF0ZXMiLCJleHQuZ2FkZ2V0
+        LmZhc3RjY2kiLCJleHQuZ2FkZ2V0LlVwbG9hZFdpemFyZCIsImV4dC5nYWRn
+        ZXQuTG9uZy1JbWFnZS1OYW1lcy1pbi1DYXRlZ29yaWVzIiwiZXh0LmdhZGdl
+        dC5TdG9ja3Bob3RvIiwiZXh0LmdhZGdldC5XYXRjaGxpc3ROb3RpY2UiLCJl
+        eHQuZ2FkZ2V0LkFqYXhRdWlja0RlbGV0ZSIsImV4dC5nYWRnZXQuV2lraU1p
+        bmlBdGxhcyIsImV4dC5nYWRnZXQuTGFuZ3VhZ2VTZWxlY3QiLCJleHQudmlz
+        dWFsRWRpdG9yLnRhcmdldExvYWRlciIsInNjaGVtYS5Vbml2ZXJzYWxMYW5n
+        dWFnZVNlbGVjdG9yIiwiZXh0LnVscy5ldmVudGxvZ2dlciIsImV4dC51bHMu
+        cHQiXSxudWxsLHRydWUpOwp9PC9zY3JpcHQ+CjxzY3JpcHQ+aWYod2luZG93
+        Lm13KXsKZG9jdW1lbnQud3JpdGUoIlx1MDAzQ3NjcmlwdCBzcmM9XCIvL2Nv
+        bW1vbnMud2lraW1lZGlhLm9yZy93L2xvYWQucGhwP2RlYnVnPWZhbHNlXHUw
+        MDI2YW1wO2xhbmc9ZW5cdTAwMjZhbXA7bW9kdWxlcz1zaXRlXHUwMDI2YW1w
+        O29ubHk9c2NyaXB0c1x1MDAyNmFtcDtza2luPXZlY3Rvclx1MDAyNmFtcDsq
+        XCJcdTAwM0VcdTAwM0Mvc2NyaXB0XHUwMDNFIik7Cn08L3NjcmlwdD4KPHNj
+        cmlwdD5pZih3aW5kb3cubXcpewptdy5jb25maWcuc2V0KHsid2dCYWNrZW5k
+        UmVzcG9uc2VUaW1lIjoxMzYsIndnSG9zdG5hbWUiOiJtdzEwOTkifSk7Cn08
+        L3NjcmlwdD4KCTwvYm9keT4KPC9odG1sPgo=
     http_version: 
-  recorded_at: Sat, 18 Jul 2015 17:15:46 GMT
+  recorded_at: Sun, 26 Jul 2015 07:10:38 GMT
 recorded_with: VCR 2.9.3

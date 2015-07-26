@@ -78,12 +78,17 @@ class Commoner
     licence_url = 'https://en.wikipedia.org/wiki/Public_domain' if licence == 'Public domain' && licence_url == nil
     party = HTTParty.get(descriptionurl, :verify => false)
     doc = Nokogiri::HTML(party.to_s)
-    author_name = ""
-    an = doc.xpath('//tr[td/@id="fileinfotpl_aut"]/td')
-    author_name = Sanitize.clean(an[1].content) if an.size > 0
+    an = doc.xpath('//span[@id="creator"]')
+    author_name = an[0].content if !an.empty?
+    if an.empty?
+      an = doc.xpath('//tr[td/@id="fileinfotpl_aut"]/td')
+      author_name = an[1].content if !an.empty? && an.size > 0
+    end
+    author_name = Sanitize.clean(author_name)
     author_url = ""
-    au = doc.xpath('//tr[td/@id="fileinfotpl_aut"]/td/a/@href')
-    author_url = au[0].content if au.size > 0
+    au = doc.xpath('//span[@id="creator"]/*/a/@href')
+    au = doc.xpath('//tr[td/@id="fileinfotpl_aut"]/td/a/@href') if au.empty?
+    author_url = au[0].content if !au.empty? && au.size > 0
     author_url = "http://commons.wikimedia.org" + author_url if author_url.start_with?('/wiki/User:')
     description = ""
     description_element = doc.xpath('//td[@class="description"]')
