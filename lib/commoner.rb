@@ -93,9 +93,11 @@ class Commoner
     description = ""
     description_element = doc.xpath('//td[@class="description"]')
     description = Sanitize.clean(description_element[0].content)[0,255].strip! if description_element.size > 0
+    page_url = "https://commons.wikimedia.org/wiki/"+title
     {
       categories:  categories,
       url:         pages.first['imageinfo'].first['url'],
+      page_url:    page_url,
       description: description,
       author:      author_name,
       author_url:  author_url,

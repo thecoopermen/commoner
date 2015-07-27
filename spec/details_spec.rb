@@ -13,7 +13,8 @@ describe Commoner do
     context 'of an unknown page name' do
       it 'gives details of a title' do
         VCR.use_cassette ('details/' + self.class.description).gsub(" ","-") do
-          image = Commoner.details 'File:xyz.jpg'
+          image = Commoner.details 'File:Does_not_exist.jpg'
+          expect(image[:description]).to eq 'missing'
         end
       end
     end
@@ -21,6 +22,12 @@ describe Commoner do
       it 'gives details of a title' do
         VCR.use_cassette ('details/' + self.class.description).gsub(" ","-") do
           image = Commoner.details 'File:Badger 25-07-09.jpg'
+        end
+      end
+      it 'gives has a page url' do
+        VCR.use_cassette ('details/' + self.class.description).gsub(" ","-") do
+          image = Commoner.details 'File:Badger 25-07-09.jpg'
+          expect(image[:page_url]).to eq 'https://commons.wikimedia.org/wiki/File:Badger 25-07-09.jpg'
         end
       end
     end
@@ -35,6 +42,13 @@ describe Commoner do
       it 'gives details of a title' do
         VCR.use_cassette ('details/' + self.class.description).gsub(" ","-") do
           image = Commoner.details 'https://en.wikipedia.org/wiki/Main_Page#mediaviewer/File:Suillus_pungens_123004.jpg'
+        end
+      end
+    end
+    context 'of a Wikipedia mobile image preview url' do
+      it 'gives details of a title' do
+        VCR.use_cassette ('details/' + self.class.description).gsub(" ","-") do
+          image = Commoner.details 'https://en.m.wikipedia.org/wiki/Main_Page#mediaviewer/File:Suillus_pungens_123004.jpg'
         end
       end
     end
