@@ -33,7 +33,6 @@ class Commoner
     # get a list of titles for the given term
     response = json_get(query_uri(term))
     images   = response['query']['pages'].map { |page_id, page| page['images'] }
-
     if images!=[nil]
       titles   = images.flatten.map { |image| image['title'] }
       titles.map do |title|
@@ -46,7 +45,6 @@ class Commoner
     # get a list of titles for the given term
     response = json_get(category_uri(category))
     images = response['query']['categorymembers']
-
     if images!=[nil]
       titles = images.flatten.map { |image| image['title'] }
       titles.map do |title|

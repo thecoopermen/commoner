@@ -74,6 +74,14 @@ describe Commoner do
         end
       end
     end
+    context 'of a photo with extra bits on the end of the url' do
+      it 'gives a description of "missing"' do
+#        VCR.use_cassette ('details/' + self.class.description).gsub(" ","-") do
+          image = Commoner.details 'https://commons.wikimedia.org/wiki/File:Plaque_in_Fortune_Street.jpg#.7B.7Bint:filedesc.7D.7D'
+          expect(image[:page_url]).to eq 'https://commons.wikimedia.org/wiki/File:Plaque_in_Fortune_Street.jpg'
+#        end
+      end
+    end
   end
 
 end
